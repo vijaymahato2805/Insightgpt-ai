@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "provider": "openrouter",
+  "models": [
+    {
+      "id": "openai/gpt-4.1-mini",
+      "label": "Fast general model (example)",
+      "tasks": ["fast", "sql"],
+      "input_usd_per_million_tokens": null,
+      "output_usd_per_million_tokens": null,
+      "fallbacks": ["google/gemini-2.5-flash"]
+    },
+    {
+      "id": "google/gemini-2.5-flash",
+      "label": "Fast fallback model (example)",
+      "tasks": ["fast", "sql"],
+      "input_usd_per_million_tokens": null,
+      "output_usd_per_million_tokens": null,
+      "fallbacks": []
+    },
+    {
+      "id": "anthropic/claude-sonnet-4",
+      "label": "Reasoning model (example)",
+      "tasks": ["reasoning"],
+      "input_usd_per_million_tokens": null,
+      "output_usd_per_million_tokens": null,
+      "fallbacks": ["openai/gpt-4.1-mini"]
+    }
+  ]
+}

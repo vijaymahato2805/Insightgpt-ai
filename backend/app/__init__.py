@@ -1,0 +1,1 @@
+"""InsightGPT AI API application."""

@@ -1,0 +1,28 @@
+{
+  "erp_version": "business_central",
+  "company_name": "Example Company",
+  "table_mappings": {
+    "customer": "dbo.Example Company$Customer",
+    "item_ledger_entry": "dbo.Example Company$Item Ledger Entry",
+    "sales_header": "dbo.Example Company$Sales Header",
+    "sales_line": "dbo.Example Company$Sales Line",
+    "value_entry": "dbo.Example Company$Value Entry"
+  },
+  "field_mappings": {
+    "customer": {
+      "customer_no": "No_",
+      "name": "Name"
+    },
+    "item_ledger_entry": {
+      "item_no": "Item No_",
+      "location_code": "Location Code",
+      "posting_date": "Posting Date",
+      "quantity": "Quantity"
+    },
+    "sales_line": {
+      "item_no": "No_",
+      "quantity": "Quantity",
+      "sales_amount": "Amount"
+    }
+  }
+}

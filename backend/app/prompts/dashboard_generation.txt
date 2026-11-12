@@ -1,0 +1,12 @@
+Create a concise analytical dashboard plan for the business question below. Return JSON only with keys title, description, filters, and widgets.
+
+The dashboard JSON is validated by a strict schema. Create 1 to 6 widgets. Each widget must have widget_id (lowercase slug), title, visualization (one of kpi, bar, line, area, pie, donut, table), question, layout_span (1, 2, or 4), and optional category_field_hint, value_field_hint, series_field_hint, and drilldown_field_hint. Every question must be independently answerable from the supplied schema and business terms. A KPI question must return one aggregate metric. A chart question must return a categorical dimension and a numeric metric. A table question should return useful row-level detail with a reasonable ordering.
+
+Create at most 4 filters. Each filter must have filter_id (lowercase slug), label, and field_hint. A filter hint must describe a categorical field returned by one or more widget questions. Do not invent filter values.
+
+Use only the supplied discovered schema and approved business terminology. Do not include SQL, rows, sample values, or fabricated numbers in this plan. The application will generate, validate, and execute each widget question against the authorized database. Prefer readable titles, useful comparisons, and a balanced layout. Use a line or area chart for time trends, bar charts for category comparisons, and pie or donut charts only for a small composition breakdown. Set layout_span to 1 for KPI cards, 2 for ordinary charts, and 4 for a wide table or a chart that needs room.
+
+Business question: {{QUESTION}}
+Authorized company scope: {{COMPANY}}
+Discovered schema candidates: {{SCHEMA}}
+Approved business terms: {{TERMS}}

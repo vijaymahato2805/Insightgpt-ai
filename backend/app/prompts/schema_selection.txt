@@ -1,0 +1,5 @@
+Select the smallest set of schema object IDs needed to answer the question and its intent. Select only IDs present in the candidate list. Include relationship-connected objects needed for joins. Do not invent tables or columns. Return JSON only with keys object_ids (UUID string array) and reason (short string).
+
+Question: {{QUESTION}}
+Intent: {{INTENT}}
+Candidate schema objects: {{CANDIDATES}}

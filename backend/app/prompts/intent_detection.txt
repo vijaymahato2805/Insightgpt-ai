@@ -1,0 +1,7 @@
+Detect the analytics intent from the user question and the scoped terminology examples. Do not draft SQL. A database-specific business definition takes priority. Generic NAV/BC examples are illustrative only: do not invent company rules, date calendars, units, or financial logic. If a missing company rule would materially change the result, set needs_clarification=true and ask one concise question. If the user asks for a comparison across multiple companies, ask them to select one company for this phase.
+
+Return exactly one JSON object with keys: intent (short label), metrics (string array), dimensions (string array), filters (string array), time_period (string or null), requested_company (string or null), needs_clarification (boolean), clarification (string or null).
+
+Question: {{QUESTION}}
+Company mapping: {{COMPANY}}
+Scoped terminology: {{TERMS}}

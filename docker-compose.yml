@@ -1,0 +1,74 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-insightgpt}
+      POSTGRES_USER: ${POSTGRES_USER:-insightgpt}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-local-dev-only}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-insightgpt} -d ${POSTGRES_DB:-insightgpt}"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      APP_ENV: ${APP_ENV:-development}
+      APP_NAME: ${APP_NAME:-InsightGPT AI}
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-insightgpt}:${POSTGRES_PASSWORD:-local-dev-only}@postgres:5432/${POSTGRES_DB:-insightgpt}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-local-only-change-this-secret-key-before-deploying}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY:-}
+      JWT_ACCESS_TOKEN_MINUTES: ${JWT_ACCESS_TOKEN_MINUTES:-60}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      FRONTEND_ORIGINS: ${FRONTEND_ORIGINS:-http://localhost:5173}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      OPENROUTER_BASE_URL: ${OPENROUTER_BASE_URL:-https://openrouter.ai/api/v1}
+      OPENROUTER_SITE_URL: ${OPENROUTER_SITE_URL:-http://localhost:5173}
+      OPENROUTER_APP_NAME: ${OPENROUTER_APP_NAME:-InsightGPT AI}
+      SQL_MODEL: ${SQL_MODEL:-}
+      REASONING_MODEL: ${REASONING_MODEL:-}
+      FAST_MODEL: ${FAST_MODEL:-}
+      BOOTSTRAP_ADMIN_EMAIL: ${BOOTSTRAP_ADMIN_EMAIL:-}
+      BOOTSTRAP_ADMIN_PASSWORD: ${BOOTSTRAP_ADMIN_PASSWORD:-}
+      SQLSERVER_ODBC_DRIVER: ${SQLSERVER_ODBC_DRIVER:-ODBC Driver 18 for SQL Server}
+      SQLSERVER_TRUST_SERVER_CERTIFICATE: ${SQLSERVER_TRUST_SERVER_CERTIFICATE:-false}
+      SQLSERVER_CONNECTION_TIMEOUT_SECONDS: ${SQLSERVER_CONNECTION_TIMEOUT_SECONDS:-8}
+      SCHEMA_DISCOVERY_MAX_OBJECTS: ${SCHEMA_DISCOVERY_MAX_OBJECTS:-5000}
+      SQL_QUERY_TIMEOUT_SECONDS: ${SQL_QUERY_TIMEOUT_SECONDS:-30}
+      SQL_MAX_RESULT_ROWS: ${SQL_MAX_RESULT_ROWS:-500}
+      SQL_MAX_AST_NODES: ${SQL_MAX_AST_NODES:-1200}
+      SQL_MAX_JOINS: ${SQL_MAX_JOINS:-8}
+    ports:
+      - "${API_PORT:-8000}:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 15s
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8000/api}
+    ports:
+      - "${FRONTEND_PORT:-5173}:80"
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

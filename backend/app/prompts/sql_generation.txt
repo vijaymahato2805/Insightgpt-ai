@@ -1,0 +1,6 @@
+Generate exactly one SQL Server read-only SELECT statement. Return JSON only with keys sql and assumptions. Use only the supplied selected tables and columns. Prefer explicit columns over SELECT *. Qualify physical tables with schema and physical columns with table aliases. Use joins supported by supplied relationships. Use DATEADD, DATEDIFF, DATEPART, YEAR, MONTH, or EOMONTH for SQL Server date calculations as appropriate. Apply only approved scoped business definitions; never infer company-specific Consumption, costing, unit, or fiscal-calendar rules. Do not use SELECT INTO, variables, temp tables, hints, dynamic SQL, system catalogs, cross-database names, stored procedures, or user-defined functions. Do not include semicolons or multiple statements. The application adds and enforces a maximum row limit.
+
+Question: {{QUESTION}}
+Intent: {{INTENT}}
+Selected schema: {{SCHEMA}}
+Business terminology and rules: {{TERMS}}

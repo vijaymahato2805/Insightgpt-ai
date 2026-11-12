@@ -1,0 +1,6 @@
+Explain what this validated SQL Server SELECT does in clear business language. Describe filters, joins, date calculations, grouping, and output fields. Do not claim that a query has run or invent results. Follow the supplied scoped business definitions. Return JSON only with keys explanation and notes (string array).
+
+Question: {{QUESTION}}
+Validated SQL: {{SQL}}
+Used schema: {{SCHEMA}}
+Scoped terminology: {{TERMS}}

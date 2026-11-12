@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  color-scheme: dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --background: 231 22% 6%;
+  --foreground: 220 20% 94%;
+  --surface: 230 18% 9%;
+  --muted: 220 10% 49%;
+  --border: 225 15% 15%;
+  --accent: 256 90% 70%;
+  --primary: 255 83% 66%;
+  background: hsl(var(--background));
+}
+
+html.light {
+  color-scheme: light;
+  --background: 220 24% 97%;
+  --foreground: 229 22% 15%;
+  --surface: 0 0% 100%;
+  --muted: 220 10% 44%;
+  --border: 220 15% 88%;
+  --accent: 256 75% 56%;
+  --primary: 255 73% 56%;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; min-height: 100vh; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+::selection { background: rgba(139, 112, 255, .3); }
+
+.font-display { font-family: "Manrope", "DM Sans", ui-sans-serif, system-ui, sans-serif; }
+.brand-mark { display: inline-flex; width: 36px; height: 36px; align-items: center; justify-content: center; flex: none; border: 1px solid rgba(184, 166, 255, .2); border-radius: 12px; color: #e5ddff; background: linear-gradient(145deg, rgba(132, 98, 255, .25), rgba(83, 66, 150, .08)); box-shadow: inset 0 1px rgba(255,255,255,.07), 0 8px 25px -15px rgba(132,98,255,.9); }
+.gradient-text { color: transparent; background: linear-gradient(100deg, #d2c6ff 5%, #9d83ff 48%, #c4b4ff 92%); background-clip: text; }
+.auth-grid { background-image: linear-gradient(rgba(177, 158, 255, .035) 1px, transparent 1px), linear-gradient(90deg, rgba(177, 158, 255, .035) 1px, transparent 1px); background-size: 64px 64px; mask-image: linear-gradient(to bottom, black, transparent 83%); }
+.avatar-dot { display: block; width: 23px; height: 23px; border: 2px solid #0b0c12; border-radius: 50%; }
+.sidebar-label { color: #555868; font-size: 9px; font-weight: 700; letter-spacing: .17em; }
+.nav-item { display: flex; height: 40px; align-items: center; gap: 11px; border: 1px solid transparent; border-radius: 10px; padding: 0 11px; color: #858797; font-size: 11px; font-weight: 500; transition: 160ms ease; }
+.nav-item-active { color: #e6ddff; border-color: rgba(172, 151, 255, .13); background: linear-gradient(90deg, rgba(136, 108, 255, .14), rgba(136, 108, 255, .045)); box-shadow: inset 2px 0 #a88eff; }
+.nav-item-active svg { color: #b9a5ff; }
+.nav-item:not(.nav-item-disabled):hover { color: #e6ddff; background-color: rgba(255,255,255,.04); }
+.nav-item-disabled { cursor: default; color: #515361; }
+.nav-item-disabled svg { color: #555766; }
+.icon-button { display: inline-flex; width: 36px; height: 36px; align-items: center; justify-content: center; border: 1px solid transparent; border-radius: 10px; color: #868897; transition: 160ms ease; }
+.icon-button:hover { border-color: hsl(var(--border)); background: rgba(255,255,255,.04); color: hsl(var(--foreground)); }
+.status-card { min-height: 136px; }
+.welcome-panel { background: radial-gradient(ellipse at 87% 18%, rgba(111, 82, 214, .11), transparent 34%), linear-gradient(145deg, #11121b, #0c0d13 73%); }
+
+html.light .workspace-shell { color: hsl(var(--foreground)); }
+html.light .sidebar { background: #fff; }
+html.light .font-display.text-white,
+html.light .text-white { color: #1c2030; }
+html.light .text-slate-200 { color: #363b4c; }
+html.light .text-slate-300 { color: #505567; }
+html.light .text-slate-400 { color: #676d80; }
+html.light .text-slate-500 { color: #7b8090; }
+html.light .text-slate-600 { color: #9297a5; }
+html.light .welcome-panel { background: radial-gradient(ellipse at 87% 18%, rgba(111, 82, 214, .08), transparent 34%), linear-gradient(145deg, #fff, #f7f7fb 73%); }
+html.light .welcome-panel .text-white { color: #1c2030; }
+html.light .sidebar .text-white { color: #1c2030; }
+html.light .sidebar .nav-item-active { color: #5940a8; }
+html.light .sidebar .border-border { border-color: hsl(var(--border)); }
+html.light .bg-background\/90 { background: rgba(248, 249, 252, .9); }
+html.light input { background: rgba(255,255,255,.72); }
+html.light .workspace-shell .bg-black\/20 { background: rgba(40,45,65,.035); }
+
+@media (max-width: 640px) {
+  .welcome-panel { min-height: 385px; }
+}

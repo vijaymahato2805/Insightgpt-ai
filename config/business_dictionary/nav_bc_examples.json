@@ -1,0 +1,15 @@
+{
+  "notice": "Illustrative onboarding examples only. Configure and approve definitions for each database and company before relying on business rules.",
+  "examples": [
+    {"term": "ILE", "definition": "Item Ledger Entry; commonly used for posted item movements in Dynamics NAV and Business Central. Confirm the company's table and movement filters."},
+    {"term": "VE", "definition": "Value Entry; commonly used for inventory cost and valuation postings. Confirm the company's costing and posting rules."},
+    {"term": "RM", "definition": "Often means Raw Material, but the actual category or item classification is company-specific."},
+    {"term": "STL", "definition": "Often used as a steel category or material abbreviation; confirm the company's item classification."},
+    {"term": "ATL", "definition": "Example product-category abbreviation only; define its meaning in the company's dictionary."},
+    {"term": "MTD", "definition": "Month to date. Use the company's approved reporting timezone and calendar boundary."},
+    {"term": "QTD", "definition": "Quarter to date. Confirm whether the company uses calendar or fiscal quarters."},
+    {"term": "YTD", "definition": "Year to date. Confirm whether the company uses calendar or fiscal years."},
+    {"term": "Location", "definition": "May refer to a Location Code field in NAV/BC; confirm the mapped table and field."},
+    {"term": "Consumption", "definition": "Company-approved business rule required. Configure the eligible entries, signs, dates, units, and reversal handling before calculating."}
+  ]
+}
